@@ -34,6 +34,43 @@ body {
 }
 
 /* ============================================
+   SVG ИКОНКИ
+============================================ */
+.icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.icon-sm {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-lg {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-xl {
+    width: 64px;
+    height: 64px;
+}
+
+.icon-primary {
+    color: var(--accent-start);
+}
+
+.icon-muted {
+    color: var(--text-muted);
+}
+
+/* ============================================
    SCROLLBAR
 ============================================ */
 ::-webkit-scrollbar {
@@ -54,7 +91,7 @@ body {
 }
 
 /* ============================================
-   АВТОРИЗАЦИЯ (LOGIN/REGISTER)
+   АВТОРИЗАЦИЯ
 ============================================ */
 .auth-page {
     display: flex;
@@ -71,7 +108,6 @@ body {
     max-width: 420px;
 }
 
-/* Анимация фона */
 .auth-bg {
     position: absolute;
     top: -50%;
@@ -120,25 +156,16 @@ body {
 }
 
 @keyframes float {
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-    33% {
-        transform: translate(30px, -30px) scale(1.1);
-    }
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
 }
 
-/* Карточка авторизации */
 .auth-card {
     position: relative;
     z-index: 1;
     background: var(--bg-card);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
     border-radius: 24px;
     padding: 32px 28px;
@@ -157,8 +184,9 @@ body {
     gap: 12px;
 }
 
-.logo-icon {
-    font-size: 36px;
+.auth-logo svg {
+    width: 48px;
+    height: 48px;
 }
 
 .auth-logo h1 {
@@ -176,7 +204,6 @@ body {
     margin-top: 4px;
 }
 
-/* Вкладки */
 .auth-tabs {
     display: flex;
     gap: 0;
@@ -198,6 +225,15 @@ body {
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.auth-tab svg {
+    width: 18px;
+    height: 18px;
 }
 
 .auth-tab.active {
@@ -209,7 +245,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Панели форм */
 .auth-panel {
     display: none;
     animation: fadeIn 0.3s ease;
@@ -220,17 +255,10 @@ body {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Формы */
 .form-group {
     margin-bottom: 16px;
 }
@@ -274,8 +302,7 @@ body {
 
 input[type="tel"],
 input[type="text"],
-input[type="password"],
-input[type="date"] {
+input[type="password"] {
     width: 100%;
     padding: 12px 16px;
     background: transparent;
@@ -303,15 +330,20 @@ input::placeholder {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    font-size: 18px;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
 }
 
 .toggle-password:hover {
     color: var(--text-primary);
 }
 
-/* Кнопки */
 .btn {
     padding: 14px 24px;
     border: none;
@@ -357,15 +389,6 @@ input::placeholder {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.btn-danger {
-    background: #e74c3c;
-    color: white;
-}
-
-.btn-danger:hover:not(:disabled) {
-    background: #c0392b;
-}
-
 .btn-icon {
     width: 40px;
     height: 40px;
@@ -374,7 +397,6 @@ input::placeholder {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    font-size: 20px;
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
@@ -382,12 +404,16 @@ input::placeholder {
     justify-content: center;
 }
 
+.btn-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
 .btn-icon:hover {
     background: var(--bg-input);
     color: var(--text-primary);
 }
 
-/* Сообщения */
 .auth-message {
     margin-top: 16px;
     padding: 12px 16px;
@@ -422,7 +448,7 @@ input::placeholder {
 }
 
 /* ============================================
-   ОСНОВНОЙ ИНТЕРФЕЙС (DASHBOARD + CHAT)
+   ОСНОВНОЙ ИНТЕРФЕЙС
 ============================================ */
 .app {
     display: flex;
@@ -431,7 +457,7 @@ input::placeholder {
 }
 
 /* ============================================
-   БОКОВАЯ ПАНЕЛЬ (SIDEBAR)
+   БОКОВАЯ ПАНЕЛЬ
 ============================================ */
 .sidebar {
     width: 320px;
@@ -522,7 +548,6 @@ input::placeholder {
     gap: 4px;
 }
 
-/* Поиск */
 .search-container {
     padding: 12px 16px;
     border-bottom: 1px solid var(--border-color);
@@ -542,9 +567,10 @@ input::placeholder {
     border-color: var(--accent-start);
 }
 
-.search-icon {
+.search-box svg {
+    width: 18px;
+    height: 18px;
     color: var(--text-secondary);
-    font-size: 16px;
     margin-right: 8px;
 }
 
@@ -575,7 +601,11 @@ input::placeholder {
     display: block;
 }
 
-/* Фильтры чатов */
+.search-clear svg {
+    width: 16px;
+    height: 16px;
+}
+
 .chat-filters {
     display: flex;
     gap: 4px;
@@ -606,7 +636,6 @@ input::placeholder {
     color: white;
 }
 
-/* Список чатов */
 .chats-list {
     flex: 1;
     overflow-y: auto;
@@ -685,14 +714,15 @@ input::placeholder {
     flex-shrink: 0;
 }
 
-/* Пустое состояние */
 .empty-chats {
     text-align: center;
     padding: 40px 20px;
 }
 
-.empty-icon {
-    font-size: 48px;
+.empty-chats svg {
+    width: 64px;
+    height: 64px;
+    color: var(--text-muted);
     margin-bottom: 12px;
 }
 
@@ -707,7 +737,7 @@ input::placeholder {
 }
 
 /* ============================================
-   ОСНОВНАЯ ОБЛАСТЬ (MAIN CONTENT)
+   ОСНОВНАЯ ОБЛАСТЬ
 ============================================ */
 .main-content {
     flex: 1;
@@ -717,7 +747,6 @@ input::placeholder {
     background: var(--bg-primary);
 }
 
-/* Пустое состояние главной */
 .empty-state {
     flex: 1;
     display: flex;
@@ -728,8 +757,10 @@ input::placeholder {
     padding: 40px;
 }
 
-.empty-state .empty-icon {
-    font-size: 64px;
+.empty-state svg {
+    width: 80px;
+    height: 80px;
+    color: var(--text-muted);
     margin-bottom: 16px;
 }
 
@@ -768,10 +799,14 @@ input::placeholder {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    font-size: 24px;
     cursor: pointer;
     padding: 4px 8px;
     display: none;
+}
+
+.back-btn svg {
+    width: 24px;
+    height: 24px;
 }
 
 .back-btn:hover {
@@ -813,7 +848,6 @@ input::placeholder {
     color: #2ecc71;
 }
 
-/* Сообщения */
 .messages-container {
     flex: 1;
     overflow-y: auto;
@@ -844,14 +878,8 @@ input::placeholder {
 }
 
 @keyframes messageIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .message.mine {
@@ -897,15 +925,6 @@ input::placeholder {
     white-space: pre-wrap;
 }
 
-.message-text a {
-    color: var(--accent-start);
-    text-decoration: none;
-}
-
-.message-text a:hover {
-    text-decoration: underline;
-}
-
 .message-time {
     font-size: 10px;
     color: var(--text-muted);
@@ -913,50 +932,15 @@ input::placeholder {
     text-align: right;
 }
 
-.message-reply {
-    font-size: 13px;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px 8px;
-    border-radius: 6px;
-    margin-bottom: 4px;
-    border-left: 3px solid var(--accent-start);
-}
-
-.message-actions {
-    display: none;
-    gap: 4px;
-    padding: 4px;
-}
-
-.message:hover .message-actions {
-    display: flex;
-}
-
-.action-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 2px 6px;
-    font-size: 14px;
-    border-radius: 4px;
-    transition: all 0.2s;
-}
-
-.action-btn:hover {
-    background: var(--bg-input);
-    color: var(--text-primary);
-}
-
-/* Пустые сообщения */
 .empty-messages {
     text-align: center;
     padding: 60px 20px;
 }
 
-.empty-messages .empty-icon {
-    font-size: 48px;
+.empty-messages svg {
+    width: 64px;
+    height: 64px;
+    color: var(--text-muted);
     margin-bottom: 12px;
 }
 
@@ -1003,12 +987,16 @@ input::placeholder {
     border: none;
     background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
     color: white;
-    font-size: 20px;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.send-btn svg {
+    width: 22px;
+    height: 22px;
 }
 
 .send-btn:hover:not(:disabled) {
@@ -1028,9 +1016,16 @@ input::placeholder {
     border: none;
     background: transparent;
     color: var(--text-secondary);
-    font-size: 20px;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attach-btn svg {
+    width: 22px;
+    height: 22px;
 }
 
 .attach-btn:hover {
@@ -1059,14 +1054,8 @@ input::placeholder {
 }
 
 @keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .modal-overlay {
@@ -1107,8 +1096,14 @@ input::placeholder {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    font-size: 24px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
 }
 
 .modal-close:hover {
@@ -1129,7 +1124,6 @@ input::placeholder {
     padding: 10px 20px;
 }
 
-/* Результаты поиска в модалке */
 .search-results {
     margin-top: 12px;
 }
@@ -1201,9 +1195,7 @@ input::placeholder {
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 .loading-spinner p {
@@ -1216,16 +1208,6 @@ input::placeholder {
     color: #e74c3c;
 }
 
-.error-state button {
-    margin-top: 12px;
-    padding: 8px 20px;
-    border-radius: 8px;
-    border: none;
-    background: var(--accent-start);
-    color: white;
-    cursor: pointer;
-}
-
 /* ============================================
    АДАПТИВНОСТЬ
 ============================================ */
@@ -1233,7 +1215,6 @@ input::placeholder {
     .sidebar {
         width: 100%;
         min-width: 0;
-        display: flex;
     }
 
     .sidebar.hidden {
@@ -1259,11 +1240,6 @@ input::placeholder {
     .message {
         max-width: 85%;
     }
-
-    .modal-content {
-        width: 95%;
-        padding: 20px;
-    }
 }
 
 @media (min-width: 769px) {
@@ -1272,9 +1248,6 @@ input::placeholder {
     }
 }
 
-/* ============================================
-   УТИЛИТЫ
-============================================ */
 .hidden {
     display: none !important;
 }
@@ -1289,4 +1262,4 @@ input::placeholder {
 
 .mt-8 {
     margin-top: 8px;
-}
+        }
