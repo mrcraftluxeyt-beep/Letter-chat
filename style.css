@@ -1263,3 +1263,119 @@ input::placeholder {
 .mt-8 {
     margin-top: 8px;
         }
+
+/* ============================================
+   TELEGRAM-LIKE ДЕТАЛИ
+============================================ */
+
+/* Онлайн-индикатор на аватаре в списке чатов */
+.chat-avatar .online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #31a24c;
+    border: 2px solid var(--bg-secondary);
+}
+
+/* Аватар пользователя */
+.user-avatar {
+    position: relative;
+}
+
+.user-avatar .online-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #31a24c;
+    border: 2px solid var(--bg-secondary);
+}
+
+.user-avatar .online-dot.offline {
+    background: #95a5a6;
+}
+
+/* Пустое состояние с иконкой */
+.empty-state svg {
+    width: 80px;
+    height: 80px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state h2 {
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.empty-state .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.empty-state .btn svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+    opacity: 1;
+}
+
+/* Пустые чаты */
+.empty-chats svg {
+    width: 56px;
+    height: 56px;
+    color: var(--text-muted);
+    opacity: 0.4;
+}
+
+/* Адаптив для полноэкранности */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.app {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* Плавные переходы */
+.chat-item {
+    transition: background 0.15s ease;
+}
+
+.chat-item:hover {
+    background: var(--bg-hover);
+}
+
+/* Стили для кнопок с иконками */
+.btn-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Акцент на важных элементах */
+.chat-name {
+    font-weight: 500;
+}
+
+.unread-badge {
+    background: #31a24c;
+    font-weight: 600;
+}
