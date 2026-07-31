@@ -1,46 +1,27 @@
 // api.js - Клиент для работы с API
 
-// ============================================
-// НАСТРОЙКА
-// ============================================
-
-// ВАЖНО: Если на PyDroid - используй 127.0.0.1
-// Если на компьютере - используй localhost или IP
 const API_BASE = 'http://127.0.0.1:8080/api';
-
-// ============================================
-// ТОКЕН
-// ============================================
 
 function getToken() {
     return localStorage.getItem('letter_token');
 }
 
-function setToken(token) {
-    localStorage.setItem('letter_token', token);
-}
-
 function getHeaders() {
-    const token = getToken();
     return {
         'Content-Type': 'application/json',
-        'Authorization': token ? `Bearer ${token}` : ''
+        'Authorization': `Bearer ${getToken()}`
     };
 }
 
 // ============================================
-// ПРОВЕРКА СОЕДИНЕНИЯ
+// ПРОВЕРКА
 // ============================================
 
 export async function checkConnection() {
     try {
-        console.log('🔍 Проверка API:', API_BASE);
         const response = await fetch(`${API_BASE}/health`);
-        const data = await response.json();
-        console.log('✅ API работает:', data);
-        return data;
+        return await response.json();
     } catch (error) {
-        console.error('❌ Ошибка соединения:', error.message);
         return { status: 'error', message: error.message };
     }
 }
@@ -58,7 +39,7 @@ export async function register(phone, password, username) {
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка соединения с сервером' };
+        return { success: false, error: 'Ошибка соединения' };
     }
 }
 
@@ -71,27 +52,23 @@ export async function login(phone, password) {
         });
         const data = await response.json();
         if (data.success) {
-            setToken(data.token);
+            localStorage.setItem('letter_token', data.token);
         }
         return data;
     } catch (error) {
-        return { success: false, error: 'Ошибка соединения с сервером' };
+        return { success: false, error: 'Ошибка соединения' };
     }
 }
 
 export async function logout() {
     try {
-        const response = await fetch(`${API_BASE}/auth/logout`, {
+        await fetch(`${API_BASE}/auth/logout`, {
             method: 'POST',
             headers: getHeaders()
         });
-        const data = await response.json();
-        localStorage.removeItem('letter_token');
-        localStorage.removeItem('current_chat_id');
-        return data;
-    } catch (error) {
-        return { success: false, error: 'Ошибка соединения' };
-    }
+    } catch (e) {}
+    localStorage.removeItem('letter_token');
+    localStorage.removeItem('current_chat_id');
 }
 
 // ============================================
@@ -105,7 +82,7 @@ export async function getMyProfile() {
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка загрузки профиля' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
@@ -116,7 +93,7 @@ export async function searchUsers(query) {
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка поиска' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
@@ -131,20 +108,20 @@ export async function getChats() {
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка загрузки чатов' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
-export async function createChat(participants, type = 'personal', name = null) {
+export async function createChat(participants, type = 'personal') {
     try {
         const response = await fetch(`${API_BASE}/chats`, {
             method: 'POST',
             headers: getHeaders(),
-            body: JSON.stringify({ participants, type, name })
+            body: JSON.stringify({ participants, type })
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка создания чата' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
@@ -159,20 +136,20 @@ export async function getMessages(chatId, limit = 50) {
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка загрузки сообщений' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
-export async function sendMessage(chatId, text, replyTo = null) {
+export async function sendMessage(chatId, text) {
     try {
         const response = await fetch(`${API_BASE}/chats/${chatId}/messages`, {
             method: 'POST',
             headers: getHeaders(),
-            body: JSON.stringify({ text, replyTo })
+            body: JSON.stringify({ text })
         });
         return await response.json();
     } catch (error) {
-        return { success: false, error: 'Ошибка отправки сообщения' };
+        return { success: false, error: 'Ошибка' };
     }
 }
 
@@ -187,4 +164,4 @@ export async function markAsRead(chatId, messageIds = null) {
     } catch (error) {
         return { success: false, error: 'Ошибка' };
     }
-}
+            }
