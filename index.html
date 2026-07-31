@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Letter — Вход</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>" />
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-container">
+            <!-- Фоновые шары -->
+            <div class="auth-bg">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+
+            <!-- Карточка -->
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <span class="logo-icon">✉️</span>
+                        <h1>Letter</h1>
+                    </div>
+                    <p class="auth-subtitle">Современный защищённый мессенджер</p>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">📱 Вход</button>
+                    <button class="auth-tab" data-tab="register">✨ Регистрация</button>
+                </div>
+
+                <!-- Панель входа -->
+                <div class="auth-panel active" id="panel-login">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label>Номер телефона</label>
+                            <div class="phone-input">
+                                <span class="phone-prefix">+7</span>
+                                <input 
+                                    type="tel" 
+                                    id="login-phone" 
+                                    placeholder="999 999-99-99" 
+                                    maxlength="10"
+                                    autofocus
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <div class="password-input">
+                                <input 
+                                    type="password" 
+                                    id="login-password" 
+                                    placeholder="Введите пароль" 
+                                />
+                                <button type="button" class="toggle-password" data-target="login-password">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="login-btn">
+                            Войти
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Панель регистрации -->
+                <div class="auth-panel" id="panel-register">
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label>Номер телефона</label>
+                            <div class="phone-input">
+                                <span class="phone-prefix">+7</span>
+                                <input 
+                                    type="tel" 
+                                    id="register-phone" 
+                                    placeholder="999 999-99-99" 
+                                    maxlength="10"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Имя пользователя</label>
+                            <input 
+                                type="text" 
+                                id="register-username" 
+                                placeholder="Как вас называть?" 
+                            />
+                            <span class="input-hint">Необязательно</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <div class="password-input">
+                                <input 
+                                    type="password" 
+                                    id="register-password" 
+                                    placeholder="Минимум 6 символов" 
+                                />
+                                <button type="button" class="toggle-password" data-target="register-password">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Повторите пароль</label>
+                            <div class="password-input">
+                                <input 
+                                    type="password" 
+                                    id="register-password-confirm" 
+                                    placeholder="Повторите пароль" 
+                                />
+                                <button type="button" class="toggle-password" data-target="register-password-confirm">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="register-btn">
+                            Создать аккаунт
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Сообщения -->
+                <div id="auth-message" class="auth-message"></div>
+
+                <!-- Футер -->
+                <div class="auth-footer">
+                    <span>© 2026 Letter</span>
+                    <span>Версия 2.0.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './auth.js';
+    </script>
+</body>
+</html>

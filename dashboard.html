@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Letter — Чаты</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✉️</text></svg>" />
+</head>
+<body>
+    <div class="app">
+        <!-- БОКОВАЯ ПАНЕЛЬ -->
+        <aside class="sidebar">
+            <!-- Шапка -->
+            <div class="sidebar-header">
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="user-avatar">👤</div>
+                    <div class="user-info">
+                        <span class="user-name" id="user-display-name">Загрузка...</span>
+                        <span class="user-status" id="user-status">онлайн</span>
+                    </div>
+                </div>
+                <div class="sidebar-actions">
+                    <button class="btn-icon" id="new-chat-btn" title="Новый чат">✏️</button>
+                    <button class="btn-icon" id="logout-btn" title="Выйти">🚪</button>
+                </div>
+            </div>
+
+            <!-- Поиск -->
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Поиск..." 
+                    />
+                    <button class="search-clear" id="search-clear">✕</button>
+                </div>
+            </div>
+
+            <!-- Фильтры -->
+            <div class="chat-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="unread">Непрочитанные</button>
+                <button class="filter-btn" data-filter="personal">Личные</button>
+            </div>
+
+            <!-- Список чатов -->
+            <div class="chats-list" id="chats-list">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Загрузка чатов...</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ОСНОВНАЯ ОБЛАСТЬ -->
+        <main class="main-content">
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">💬</div>
+                <h2>Выберите чат</h2>
+                <p>Начните общение с друзьями</p>
+                <button class="btn btn-primary" id="empty-new-chat-btn">
+                    Создать новый чат
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО (НОВЫЙ ЧАТ) -->
+    <div class="modal" id="new-chat-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Новый чат</h3>
+                <button class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Введите номер телефона</label>
+                    <div class="phone-input">
+                        <span class="phone-prefix">+7</span>
+                        <input 
+                            type="tel" 
+                            id="new-chat-phone" 
+                            placeholder="999 999-99-99" 
+                            maxlength="10"
+                        />
+                    </div>
+                </div>
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-new-chat">Отмена</button>
+                <button class="btn btn-primary" id="create-new-chat" disabled>Создать</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './dashboard.js';
+    </script>
+</body>
+</html>
