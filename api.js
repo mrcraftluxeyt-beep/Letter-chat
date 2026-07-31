@@ -1,6 +1,16 @@
 // api.js - Клиент для работы с API
 
-const API_BASE = 'http://localhost:8080/api';
+// ============================================
+// НАСТРОЙКА
+// ============================================
+
+// ВАЖНО: Если на PyDroid - используй 127.0.0.1
+// Если на компьютере - используй localhost или IP
+const API_BASE = 'http://127.0.0.1:8080/api';
+
+// ============================================
+// ТОКЕН
+// ============================================
 
 function getToken() {
     return localStorage.getItem('letter_token');
@@ -16,6 +26,23 @@ function getHeaders() {
         'Content-Type': 'application/json',
         'Authorization': token ? `Bearer ${token}` : ''
     };
+}
+
+// ============================================
+// ПРОВЕРКА СОЕДИНЕНИЯ
+// ============================================
+
+export async function checkConnection() {
+    try {
+        console.log('🔍 Проверка API:', API_BASE);
+        const response = await fetch(`${API_BASE}/health`);
+        const data = await response.json();
+        console.log('✅ API работает:', data);
+        return data;
+    } catch (error) {
+        console.error('❌ Ошибка соединения:', error.message);
+        return { status: 'error', message: error.message };
+    }
 }
 
 // ============================================
@@ -64,15 +91,6 @@ export async function logout() {
         return data;
     } catch (error) {
         return { success: false, error: 'Ошибка соединения' };
-    }
-}
-
-export async function checkConnection() {
-    try {
-        const response = await fetch(`${API_BASE}/health`);
-        return await response.json();
-    } catch (error) {
-        return { status: 'error', message: 'Сервер недоступен' };
     }
 }
 
@@ -155,18 +173,6 @@ export async function sendMessage(chatId, text, replyTo = null) {
         return await response.json();
     } catch (error) {
         return { success: false, error: 'Ошибка отправки сообщения' };
-    }
-}
-
-export async function deleteMessage(messageId) {
-    try {
-        const response = await fetch(`${API_BASE}/messages/${messageId}`, {
-            method: 'DELETE',
-            headers: getHeaders()
-        });
-        return await response.json();
-    } catch (error) {
-        return { success: false, error: 'Ошибка удаления сообщения' };
     }
 }
 
